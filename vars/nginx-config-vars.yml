@@ -1,0 +1,8 @@
+---
+tls_dir: "/etc/nginx/ssl/"
+key_file: "nginx.key"
+cert_file: "nginx.crt"
+config_file: "/etc/nginx/conf.d/nginx-server.conf"
+index_file: "/usr/share/nginx/html/index.html"
+server_name: "localhost"
+...

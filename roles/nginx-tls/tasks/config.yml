@@ -1,0 +1,29 @@
+---
+- block:
+  - name: "Copy nginx-server config file onto the target vm"
+    template:
+      src: "etc/nginx/conf.d/nginx-server.conf.j2"
+      dest: "{{ config_file }}"    
+      owner: root
+      group: root
+      mode: "0755"
+
+  - name: "Copy index.html onto the target vm"
+    template:
+      src: "usr/share/nginx/html/index.html.j2"
+      dest: "{{ index_file }}"
+      owner: root
+      group: root
+      mode: "0755"
+
+  - name: "Ensure that NGINX is enabled"
+    service:
+      name: nginx
+      enabled: true
+
+  - name: "Ensure that NGINX process is started"
+    service:
+      name: nginx
+      state: started
+  become: true
+...

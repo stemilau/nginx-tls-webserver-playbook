@@ -1,0 +1,12 @@
+---
+- name: "Including Tasks"
+  include_tasks:
+    file: "{{ task_item }}.yml"
+  loop:
+    - install
+    - tls 
+    - config
+    - debug-and-verify 
+  loop_control:
+    loop_var: task_item
+...

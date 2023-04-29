@@ -1,0 +1,18 @@
+---
+- block:
+  - name: "Create dir for TLS certificate"
+    file:
+      path: "{{ tls_dir }}"
+      state: directory
+      mode: 0750
+  - name: "Copy TLS key and cert inside TLS directory onto target machine"
+    copy:
+      src: "{{ tls_item }}"
+      dest: "{{ tls_dir }}"
+      mode: 0600
+    loop:
+      - "{{ key_file }}"
+      - "{{ cert_file }}"
+    loop_control:
+      loop_var: tls_item
+  become: true

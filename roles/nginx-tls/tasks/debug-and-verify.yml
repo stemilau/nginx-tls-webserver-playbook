@@ -1,0 +1,15 @@
+---
+- name: "Print inventory_hostname and fqdn"
+  debug:
+    msg: "hostname: {{ inventory_hostname }} & fqdn: {{ ansible_hostname }}"
+- name: "Test it! https://localhost:8443/index.html"
+  delegate_to: localhost
+  become: false
+  uri:
+    url: 'https://localhost:8443/index.html'
+    validate_certs: false
+    return_content: true
+  register: this
+  failed_when: "'Running on ' not in this.content"
+  tags:
+    - test

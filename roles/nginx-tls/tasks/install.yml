@@ -1,0 +1,12 @@
+---
+- block:
+  - name: "Enable EPEL repo, so that NGINX could be installed"
+    yum:
+      name: epel-release
+      state: present
+  - name: "Ensure that NGINX is installed"
+    package:
+      name: nginx
+      state: present
+  become: yes
+...

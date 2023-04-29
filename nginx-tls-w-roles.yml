@@ -1,0 +1,16 @@
+---
+- name: "NGINX config playbook with vars and roles"
+  # Defined in inventory/vagrant.ini
+  hosts: webservers
+  tasks:
+    - name: "Including variables inside vars/ dir"
+      include_vars:
+        dir: "vars/"
+    - name: "Including roles inside roles/ dir"
+      include_role:
+        name: "{{ role_item }}"
+      loop:
+        - nginx-tls
+      loop_control:
+        loop_var: role_item
+...
